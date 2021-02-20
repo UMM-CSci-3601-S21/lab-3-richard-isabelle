@@ -21,5 +21,4 @@ export class TodosProfileComponent implements OnInit {
       this.todoService.getTodoById(this.id).subscribe(todo => this.todo = todo);
     });
   }
-
 }

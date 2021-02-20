@@ -9,8 +9,8 @@ import { TodosService } from './todos.service';
   styleUrls: ['./todos-list.component.scss'],
   providers: []
 })
-export class TodosListComponent implements OnInit {
 
+export class TodosListComponent implements OnInit {
   public serverFilteredTodos: Todos[];
   public filteredTodos: Todos[];
 

@@ -1,61 +1,59 @@
-
-<!-- <div class='todos' *ngFor='let todo of this.filteredTodos'>
+<div class='todos' *ngFor='let todo of this.filteredTodos'>
     {{ todo.owner }}
 </div>
--->
+
 
 <div fxLayout="row">
-  <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10">
+    <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10">
 
-    <mat-card class="search-card">
-      <mat-card-title class="todos-list-title">Todos</mat-card-title>
-      <mat-card-content fxLayout="column">
+      <mat-card class="search-card">
+        <mat-card-title class="todos-list-title">Todos</mat-card-title>
+        <mat-card-content fxLayout="column">
 
-        <div fxLayout="row wrap" fxLayoutGap="10px">
+          <div fxLayout="row wrap" fxLayoutGap="10px">
 
-          <mat-form-field class="input-field">
-            <mat-label>Owner</mat-label>
-            <input matInput id="todos-owner-input" placeholder="Filter by owner"
-            [(ngModel)]="todosOwner" (input)="updateFilter()">
-            <mat-hint>Filtered on server</mat-hint>
-          </mat-form-field>
+            <mat-form-field class="input-field">
+              <mat-label>Owner</mat-label>
+              <input matInput id="todos-owner-input" placeholder="Filter by owner"
+              [(ngModel)]="todosOwner" (input)="updateFilter()">
+              <mat-hint>Filtered on server</mat-hint>
+            </mat-form-field>
 
-          <mat-form-field class="input-field">
-            <mat-label>Body</mat-label>
-            <input matInput id="todos-body-input" placeholder="Filter by body"
-            [(ngModel)]="todosBody" (input)="updateFilter()">
-            <mat-hint>Filtered on server</mat-hint>
-          </mat-form-field>
+            <mat-form-field class="input-field">
+              <mat-label>Body</mat-label>
+              <input matInput id="todos-body-input" placeholder="Filter by body"
+              [(ngModel)]="todosBody" (input)="updateFilter()">
+              <mat-hint>Filtered on server</mat-hint>
+            </mat-form-field>
 
-          <mat-form-field class="input-field">
-            <mat-label>Category</mat-label>
-            <input matInput id="todos-category-input" placeholder="Filter by category"
-            [(ngModel)]="todosCategory" (input)="getTodosFromServer()">
-            <mat-hint>Filtered on client</mat-hint>
-          </mat-form-field>
-
-
-
-
-
-
-          <mat-form-field class="input-field">
-            <mat-label>Status</mat-label>
-            <mat-select (selectionChange)="getTodosFromServer()" [(ngModel)]="todosStatus" data-test="userRoleSelect">
-              <mat-option>--</mat-option>
-              <mat-option value="complete">Complete</mat-option>
-              <mat-option value="incomplete">Incomplete</mat-option>
-            </mat-select>
-            <mat-hint>Filtered on server</mat-hint>
-          </mat-form-field>
-        </div>
+            <mat-form-field class="input-field">
+              <mat-label>Category</mat-label>
+              <input matInput id="todos-category-input" placeholder="Filter by category"
+              [(ngModel)]="todosCategory" (input)="getTodosFromServer()">
+              <mat-hint>Filtered on client</mat-hint>
+            </mat-form-field>
 
 
 
 
 
-      </mat-card-content>
-    </mat-card>
+
+            <mat-form-field class="input-field">
+              <mat-label>Status</mat-label>
+              <mat-select (selectionChange)="getTodosFromServer()" [(ngModel)]="todosStatus" data-test="userRoleSelect">
+                <mat-option>--</mat-option>
+                <mat-option value="complete">Complete</mat-option>
+                <mat-option value="incomplete">Incomplete</mat-option>
+              </mat-select>
+              <mat-hint>Filtered on server</mat-hint>
+            </mat-form-field>
+          </div>
+
+
+
+
+
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
-</div>
-
