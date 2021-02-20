@@ -1,6 +1,3 @@
-<div class='todos' *ngFor='let todo of this.filteredTodos'>
-    {{ todo.owner }}
-</div>
 
 
 <div fxLayout="row">
@@ -16,20 +13,20 @@
               <mat-label>Owner</mat-label>
               <input matInput id="todos-owner-input" placeholder="Filter by owner"
               [(ngModel)]="todosOwner" (input)="updateFilter()">
-              <mat-hint>Filtered on server</mat-hint>
+              <mat-hint>Filtered on client</mat-hint>
             </mat-form-field>
 
             <mat-form-field class="input-field">
               <mat-label>Body</mat-label>
               <input matInput id="todos-body-input" placeholder="Filter by body"
               [(ngModel)]="todosBody" (input)="updateFilter()">
-              <mat-hint>Filtered on server</mat-hint>
+              <mat-hint>Filtered on client</mat-hint>
             </mat-form-field>
 
             <mat-form-field class="input-field">
               <mat-label>Category</mat-label>
               <input matInput id="todos-category-input" placeholder="Filter by category"
-              [(ngModel)]="todosCategory" (input)="getTodosFromServer()">
+              [(ngModel)]="todosCategory" (input)="updateFilter()">
               <mat-hint>Filtered on client</mat-hint>
             </mat-form-field>
 
@@ -52,3 +49,6 @@
       </mat-card>
     </div>
   </div>
+<div class='todos' *ngFor='let todo of this.filteredTodos'>
+    {{ todo.body }}
+</div>

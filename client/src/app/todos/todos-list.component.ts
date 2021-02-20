@@ -4,7 +4,7 @@ import { Todos , TodosStatus } from './todos';
 import { TodosService } from './todos.service';
 
 @Component({
-  selector: 'app-todos-list',
+  selector: 'app-todos-list-component',
   templateUrl: './todos-list.component.html',
   styleUrls: ['./todos-list.component.scss'],
   providers: []
@@ -23,9 +23,7 @@ export class TodosListComponent implements OnInit {
 
   getTodosFromServer() {
     this.todosService.getTodos({
-      owner: this.todosOwner,
       status: this.todosStatus,
-      body: this.todosBody
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
       this.updateFilter();
@@ -42,7 +40,7 @@ export class TodosListComponent implements OnInit {
   */
   public updateFilter(){
     this.filteredTodos = this.todosService.filterTodos(
-      this.serverFilteredTodos, { category: this.todosCategory });
+      this.serverFilteredTodos, { category: this.todosCategory, owner: this.todosOwner, body: this.todosBody });
   }
 
   /**
