@@ -18,7 +18,7 @@ export class TodosProfileComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe((pmap) => {
       this.id = pmap.get('id');
-      this.todoService.getTodoById(this.id).subscribe(todo => this.todo = todo);
+      this.todoService.getTodosById(this.id).subscribe(todo => this.todo = todo);
     });
   }
 }

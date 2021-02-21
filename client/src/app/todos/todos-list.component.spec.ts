@@ -14,6 +14,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { userInfo } from 'os';
 import { Observable } from 'rxjs';
 import { MockTodosService } from '../../testing/todos.service.mock';
 import { Todos } from './todos';
@@ -39,7 +40,7 @@ const COMMON_IMPORTS: any[] = [
 ];
 
 describe('TodosListComponent', () => {
-  let component: TodosListComponent;
+  let todosList: TodosListComponent;
   let fixture: ComponentFixture<TodosListComponent>;
 
   beforeEach(async () => {
@@ -53,11 +54,39 @@ describe('TodosListComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TodosListComponent);
-    component = fixture.componentInstance;
+    todosList = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(todosList).toBeTruthy();
+  });
+
+  it('contains all of the todos', () => {
+    expect(todosList.serverFilteredTodos.length).toBe(3);
+  });
+
+  it('contains a owner name "Blanche"', () => {
+    expect(todosList.serverFilteredTodos.some((todos: Todos) => todos.owner === 'Blanche')).toBe(true);
+  });
+
+  it('does not contain a owner named "Sammy"', () => {
+    expect(todosList.serverFilteredTodos.some((todos: Todos) => todos.owner === 'Sammy')).toBe(false);
+  });
+
+  it('contains two todos that have the owner named "Fry"', () => {
+    expect(todosList.serverFilteredTodos.filter((todos: Todos) => todos.owner === 'Fry').length).toBe(2);
+  });
+
+  it('contains a todo with a complete status', () => {
+    expect(todosList.serverFilteredTodos.filter((todos: Todos) => todos.status === 'complete').length).toBe(1);
+  });
+
+  it('contains one todo with the category of "homework"', () => {
+    expect(todosList.serverFilteredTodos.filter((todos: Todos) => todos.category === 'homework').length).toBe(1);
+  });
+
+  it('contains two todos with bodies that contain the phrase "magna"', () => {
+    expect(todosList.serverFilteredTodos.filter((todos: Todos) => todos.body.includes('magna') === true).length).toBe(2);
   });
 });
