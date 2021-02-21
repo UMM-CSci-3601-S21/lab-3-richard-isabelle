@@ -24,7 +24,7 @@ export class TodosService {
     });
   }
 
-  getTodoById(id: string): Observable<Todos> {
+  getTodosById(id: string): Observable<Todos> {
     return this.httpClient.get<Todos>(this.todosUrl + '/' + id);
   }
 
