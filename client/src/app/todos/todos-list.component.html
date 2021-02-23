@@ -41,14 +41,37 @@
             </mat-form-field>
           </div>
 
-
-
-
-
         </mat-card-content>
       </mat-card>
     </div>
   </div>
-<div class='todos' *ngFor='let todo of this.filteredTodos'>
-    {{ todo.body }}
+
+<div fxLayout="row">
+  <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" *ngIf="serverFilteredTodos; else todosError">
+    <mat-card-content>
+      <mat-nav-list class="todos-nav-list">
+        <h3 mat-subheader>Todos</h3>
+        <a mat-list-item *ngFor="let todos of this.filteredTodos" [routerLink]="['/todos', todos._id]" class="todos-list-item">
+          <h3 matLine class="todos-list-owner"> {{todos.owner}} </h3>
+          <p matLine class="todos-list-category"> {{todos.category}} </p>
+          <p matLine class="todos-list-status">{{todos.status}}</p>
+        </a>
+      </mat-nav-list>
+    </mat-card-content>
+
+  </div>
 </div>
+
+
+
+<ng-template #todosError>
+  <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" class="todos-error">
+    <mat-error>
+      There was a problem loading the todos. Possibly the server is down or perhaps there are network issues.
+    </mat-error>
+    <mat-error>
+      Try unplugging it and plug it back in again.
+    </mat-error>
+  </div>
+</ng-template>
+

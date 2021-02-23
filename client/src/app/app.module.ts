@@ -33,6 +33,9 @@ import { UserCardComponent } from './users/user-card.component';
 import { UserProfileComponent } from './users/user-profile.component';
 import { TodosListComponent } from './todos/todos-list.component';
 import { TodosProfileComponent } from './todos/todos-profile.component';
+import { TodosCardComponent } from './todos/todos-card.component';
+
+
 
 const MATERIAL_MODULES: any[] = [
   MatListModule,
@@ -61,7 +64,9 @@ const MATERIAL_MODULES: any[] = [
     UserCardComponent,
     UserProfileComponent,
     TodosListComponent,
+    TodosCardComponent,
     TodosProfileComponent,
+    TodosCardComponent,
   ],
   imports: [
     BrowserModule,

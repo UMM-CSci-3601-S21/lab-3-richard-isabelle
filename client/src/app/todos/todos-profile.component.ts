@@ -4,7 +4,7 @@ import { Todos } from './todos';
 import { TodosService } from './todos.service';
 
 @Component({
-  selector: 'app-todos-profile-component',
+  selector: 'app-todos-profile',
   templateUrl: './todos-profile.component.html',
   styleUrls: ['./todos-profile.component.scss']
 })

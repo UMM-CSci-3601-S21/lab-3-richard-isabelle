@@ -104,7 +104,7 @@ describe('TodosService', () => {
     });
   });
 
-  describe('getTodoById()', () => {
+  describe('getTodosById()', () => {
     it('calls api/todos/id with the correct ID', () => {
       const targetTodo: Todos = testTodos[2];
       const targetId: string = targetTodo._id;
@@ -147,6 +147,35 @@ describe('TodosService', () => {
     });
 
     it('filters by body', () => {
+      const todoBody = 'magna';
+      const filteredTodos = todosService.filterTodos(testTodos, { body: todoBody });
+
+      expect(filteredTodos.length).toBe(2);
+
+      filteredTodos.forEach(todo => {
+        expect(todo.body.indexOf(todoBody)).toBeGreaterThanOrEqual(0);
+      });
+    });
+
+    it('filters by both owner and category', () => {
+      const todoOwner = 'Fry';
+      const todoCategory = 'homework';
+      const filteredTodos = todosService.filterTodos(testTodos, { owner: todoOwner, category: todoCategory });
+
+      expect(filteredTodos.length).toBe(1);
+
+      filteredTodos.forEach(todo => {
+        expect(todo.owner.indexOf(todoOwner)).toBeGreaterThanOrEqual(0);
+        expect(todo.category.indexOf(todoCategory)).toBeGreaterThanOrEqual(0);
+      });
+    });
+
+    it('returns 0 todos when no todos contain the multiple filters given', () => {
+      const todoOwner = 'Fry';
+      const todoCategory = 'study';
+      const filteredTodos = todosService.filterTodos(testTodos, { owner: todoOwner, category: todoCategory});
+
+      expect(filteredTodos.length).toBe(0);
     });
   });
 });
