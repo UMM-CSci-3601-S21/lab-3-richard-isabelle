@@ -68,7 +68,7 @@ describe('TodosService', () => {
 
     describe('Calling getTodos() with parameters correctly forms with HTTP request', () => {
 
-      it('correctly calls api/user with filter parameters \'complete\'', () => {
+      it('correctly calls api/user with filter parameter \'complete\'', () => {
         todosService.getTodos({ status: 'complete' }).subscribe(
           todos => expect(todos).toBe(testTodos)
         );
@@ -86,18 +86,19 @@ describe('TodosService', () => {
 
       it('correctly calls api/user with multiple filter parameters', () => {
 
-        todosService.getTodos({ status: 'complete' }).subscribe(
+        todosService.getTodos({ status: 'complete', limit: '1' }).subscribe(
           todos => expect(todos).toBe(testTodos)
         );
 
         const req = httpTestingController.expectOne(
           (request) => request.url.startsWith(todosService.todosUrl)
-          && request.params.has('status')
+          && request.params.has('status') && request.params.has('limit')
         );
 
         expect(req.request.method).toEqual('GET');
 
         expect(req.request.params.get('status')).toEqual('complete');
+        expect(req.request.params.get('limit')).toEqual('1');
 
         req.flush(testTodos);
       });
@@ -124,7 +125,7 @@ describe('TodosService', () => {
   describe('filterTodos()', () => {
 
     it('filters by owner', () => {
-      //This filters the todos for all owners with "fr" in their name
+      //This filters the todos for all owners with "Fry" in their name
       const ownerName = 'Fry';
       const filteredTodos = todosService.filterTodos(testTodos, { owner: ownerName });
 
