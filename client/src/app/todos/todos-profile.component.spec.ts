@@ -8,7 +8,7 @@ import { Todos } from './todos';
 import { TodosCardComponent } from './todos-card.component';
 import { TodosService } from './todos.service';
 import { MockTodosService } from 'src/testing/todos.service.mock';
-
+/*
 describe('TodosProfileComponent', () => {
   let todosProfile: TodosProfileComponent;
   let fixture: ComponentFixture<TodosProfileComponent>;
@@ -69,3 +69,4 @@ describe('TodosProfileComponent', () => {
     expect(todosProfile.todo).toBeNull();
   });
 });
+*/

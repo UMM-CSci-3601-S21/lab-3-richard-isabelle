@@ -104,7 +104,7 @@ describe('TodosService', () => {
     });
   });
 
-  describe('getTodoById()', () => {
+  describe('getTodosById()', () => {
     it('calls api/todos/id with the correct ID', () => {
       const targetTodo: Todos = testTodos[2];
       const targetId: string = targetTodo._id;
