@@ -12,9 +12,12 @@ export class TodosService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getTodos(filters?: { status?: TodosStatus}): Observable<Todos[]> {
+  getTodos(filters?: { status?: TodosStatus; limit?: string }): Observable<Todos[]> {
     let httpParams: HttpParams = new HttpParams();
     if(filters) {
+      if(filters.limit) {
+        httpParams = httpParams.set('limit', filters.limit);
+      }
       if(filters.status) {
         httpParams = httpParams.set('status', filters.status);
       }

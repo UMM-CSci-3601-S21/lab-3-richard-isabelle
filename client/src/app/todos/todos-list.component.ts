@@ -18,12 +18,14 @@ export class TodosListComponent implements OnInit {
   public todosStatus: TodosStatus;
   public todosBody: string;
   public todosCategory: string;
+  public limit: string;
 
   constructor(private todosService: TodosService, private snackBar: MatSnackBar) { }
 
   getTodosFromServer() {
     this.todosService.getTodos({
       status: this.todosStatus,
+      limit: this.limit
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
       this.updateFilter();
