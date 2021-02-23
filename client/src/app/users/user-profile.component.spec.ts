@@ -8,7 +8,7 @@ import { User } from './user';
 import { UserCardComponent } from './user-card.component';
 import { UserProfileComponent } from './user-profile.component';
 import { UserService } from './user.service';
-/*
+
 describe('UserProfileComponent', () => {
   let component: UserProfileComponent;
   let fixture: ComponentFixture<UserProfileComponent>;
@@ -76,4 +76,4 @@ describe('UserProfileComponent', () => {
     expect(component.user).toBeNull();
   });
 });
-*/
+
