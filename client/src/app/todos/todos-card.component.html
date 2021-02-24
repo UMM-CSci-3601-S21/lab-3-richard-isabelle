@@ -1,0 +1,17 @@
+<mat-card class="todos-card" *ngIf="this.todos">
+  <mat-card-header>
+    <mat-card-title class="todos-card-owner">{{ this.todos.owner }}</mat-card-title>
+    <mat-card-subtitle>Category: <span class="todos-card-category">{{ todos.category }}</span></mat-card-subtitle>
+    <mat-card-subtitle>Status: <span class="todos-card-status" *ngIf='todos.status; else elseBlock'>Complete</span>
+    </mat-card-subtitle>
+    <ng-template #elseBlock>
+      <span class="todos-card-status">Incomplete</span>
+    </ng-template>
+  </mat-card-header>
+  <mat-card-content *ngIf="!this.simple">
+    <p class="todos-card-body">{{ this.todos.body }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button data-test="viewProfileButton" *ngIf="this.simple" [routerLink]="['/todos', this.todos._id]">View Profile</button>
+  </mat-card-actions>
+</mat-card>

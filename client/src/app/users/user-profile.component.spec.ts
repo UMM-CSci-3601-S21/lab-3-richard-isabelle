@@ -76,3 +76,4 @@ describe('UserProfileComponent', () => {
     expect(component.user).toBeNull();
   });
 });
+
