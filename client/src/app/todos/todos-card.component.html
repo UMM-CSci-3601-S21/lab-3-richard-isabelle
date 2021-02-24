@@ -2,7 +2,11 @@
   <mat-card-header>
     <mat-card-title class="todos-card-name">{{ this.todos.owner }}</mat-card-title>
     <mat-card-subtitle>Category: <span class="todos-card-category">{{ todos.category }}</span></mat-card-subtitle>
-    <mat-card-subtitle>Status: <span class="todos-card-status">{{ todos.status }}</span></mat-card-subtitle>
+    <mat-card-subtitle>Status: <span class="todos-card-status" *ngIf='todos.status; else elseBlock'>Complete</span>
+    </mat-card-subtitle>
+    <ng-template #elseBlock>
+      <span class="todos-card-status">Incomplete</span>
+    </ng-template>
   </mat-card-header>
   <mat-card-content *ngIf="!this.simple">
     <p class="todos-card-body">{{ this.todos.body }}</p>

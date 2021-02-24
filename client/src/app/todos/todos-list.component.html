@@ -32,13 +32,21 @@
 
             <mat-form-field class="input-field">
               <mat-label>Status</mat-label>
-              <mat-select (selectionChange)="getTodosFromServer()" [(ngModel)]="todosStatus" data-test="userRoleSelect">
+              <mat-select (selectionChange)="getTodosFromServer()" [(ngModel)]="todosStatus" data-test="todosStatusSelect">
                 <mat-option>--</mat-option>
                 <mat-option value="complete">Complete</mat-option>
                 <mat-option value="incomplete">Incomplete</mat-option>
               </mat-select>
               <mat-hint>Filtered on server</mat-hint>
             </mat-form-field>
+
+            <mat-form-field class="input-field">
+              <mat-label>Limit</mat-label>
+              <input matInput id="todos-limit" type="number" placeholder="Filter by limit"
+              min="0" max="300" [(ngModel)]="limit" (input)="updateFilter()">
+              <mat-hint>Filtered on client</mat-hint>
+            </mat-form-field>
+
           </div>
 
         </mat-card-content>
@@ -52,9 +60,16 @@
       <mat-nav-list class="todos-nav-list">
         <h3 mat-subheader>Todos</h3>
         <a mat-list-item *ngFor="let todos of this.filteredTodos" [routerLink]="['/todos', todos._id]" class="todos-list-item">
-          <h3 matLine class="todos-list-owner"> {{todos.owner}} </h3>
-          <p matLine class="todos-list-category"> {{todos.category}} </p>
-          <p matLine class="todos-list-status">{{todos.status}}</p>
+          <div fxLayout="row" fxLayoutAlign="center">
+            <p matLine class="todos-list-status" *ngIf='todos.status; else elseBlock'>
+              <mat-icon matListIcon>check_box</mat-icon></p>
+              <ng-template #elseBlock>
+            <p matLine class="todos-list-status">
+              <mat-icon matListIcon>check_box_outline_blank</mat-icon></p>
+            </ng-template>
+          </div>
+            <h3 matLine class="todos-list-owner"> {{todos.owner}} </h3>
+            <p matLine class="todos-list-category"> {{todos.category}} </p>
         </a>
       </mat-nav-list>
     </mat-card-content>
@@ -67,10 +82,10 @@
 <ng-template #todosError>
   <div fxFlex fxFlex.gt-sm="80" fxFlexOffset.gt-sm="10" class="todos-error">
     <mat-error>
-      There was a problem loading the todos. Possibly the server is down or perhaps there are network issues.
+      If this isn't loading, then the world is burning.
     </mat-error>
     <mat-error>
-      Try unplugging it and plug it back in again.
+      Try unplugging it, wait ten seconds, and plug it back in again.
     </mat-error>
   </div>
 </ng-template>

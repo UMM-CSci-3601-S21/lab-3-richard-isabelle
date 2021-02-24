@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Todos } from './todos';
 import { TodosService } from './todos.service';
-import { getMatTooltipInvalidPositionError } from '@angular/material/tooltip';
 
 describe('TodosService', () => {
 
@@ -83,25 +82,6 @@ describe('TodosService', () => {
 
         req.flush(testTodos);
       });
-
-      it('correctly calls api/user with multiple filter parameters', () => {
-
-        todosService.getTodos({ status: 'complete', limit: '1' }).subscribe(
-          todos => expect(todos).toBe(testTodos)
-        );
-
-        const req = httpTestingController.expectOne(
-          (request) => request.url.startsWith(todosService.todosUrl)
-          && request.params.has('status') && request.params.has('limit')
-        );
-
-        expect(req.request.method).toEqual('GET');
-
-        expect(req.request.params.get('status')).toEqual('complete');
-        expect(req.request.params.get('limit')).toEqual('1');
-
-        req.flush(testTodos);
-      });
     });
   });
 
@@ -174,9 +154,17 @@ describe('TodosService', () => {
     it('returns 0 todos when no todos contain the multiple filters given', () => {
       const todoOwner = 'Fry';
       const todoCategory = 'study';
-      const filteredTodos = todosService.filterTodos(testTodos, { owner: todoOwner, category: todoCategory});
+      const filteredTodos = todosService.filterTodos(testTodos, { owner: todoOwner, category: todoCategory });
 
       expect(filteredTodos.length).toBe(0);
+    });
+
+    it('correctly limits a search based on the limit number given', () => {
+      const todoOwner = 'Fry';
+      const limitNumber = 1;
+      const filteredTodos = todosService.filterTodos(testTodos, { owner: todoOwner, limit: limitNumber });
+
+      expect(filteredTodos.length).toBe(1);
     });
   });
 });

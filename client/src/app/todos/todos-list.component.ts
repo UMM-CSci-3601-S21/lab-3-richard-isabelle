@@ -18,14 +18,13 @@ export class TodosListComponent implements OnInit {
   public todosStatus: TodosStatus;
   public todosBody: string;
   public todosCategory: string;
-  public limit: string;
+  public limit: number;
 
   constructor(private todosService: TodosService, private snackBar: MatSnackBar) { }
 
   getTodosFromServer() {
     this.todosService.getTodos({
       status: this.todosStatus,
-      limit: this.limit
     }).subscribe(returnedTodos => {
       this.serverFilteredTodos = returnedTodos;
       this.updateFilter();
@@ -42,7 +41,7 @@ export class TodosListComponent implements OnInit {
   */
   public updateFilter(){
     this.filteredTodos = this.todosService.filterTodos(
-      this.serverFilteredTodos, { category: this.todosCategory, owner: this.todosOwner, body: this.todosBody });
+      this.serverFilteredTodos, { category: this.todosCategory, owner: this.todosOwner, body: this.todosBody, limit: this.limit });
   }
 
   /**
