@@ -82,13 +82,13 @@ describe('Todo List', () => {
     page.getTodosListItem().should('have.length', 4);
   });
 
-  it('Should click view profile on a user and go to the right URL', () => {
+  it('Should click on a todo and go to the right URL', () => {
       page.getTodosListItem().first().then((card) => {
           cy.get('#todos-body-input').type('magna ex');
           cy.get('#todos-owner-input').type('Dawn');
           cy.get('#todos-category-input').type('homework');
 
-          //When the view profile button on the first user card is clicked, the URL should have a valid mongo ID
+          //When the todo is clicked, the URL should have a valid mongo ID
           page.getTodosCards();
 
           //The URL should contain '/todos/' (note the ending slash) and '/todos/' should be followed ny a mongo ID
@@ -96,7 +96,7 @@ describe('Todo List', () => {
           .should('contain', '/todos/')
           .should('match', /.*\/todos\/[0-9a-fA-F]{24}$/);
 
-          //On this profile page we were sent to, the owner and category should be correct
+          //On this todo page we were sent to, the owner and category should be correct
           cy.get('.todos-card-owner').should('have.text', 'Dawn');
           cy.get('.todos-card-category').should('have.text', 'homework');
       });
